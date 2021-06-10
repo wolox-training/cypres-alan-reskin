@@ -1,0 +1,24 @@
+{
+  "name": "cypres-alan-reskin",
+  "version": "1.0.0",
+  "description": "Training Alan Reskin",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "cypress open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolox-training/cypres-alan-reskin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wolox-training/cypres-alan-reskin/issues"
+  },
+  "homepage": "https://github.com/wolox-training/cypres-alan-reskin#readme",
+  "dependencies": {
+    "cypress": "^7.5.0"
+  }
+}
