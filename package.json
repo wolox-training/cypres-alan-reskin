@@ -20,5 +20,8 @@
   "homepage": "https://github.com/wolox-training/cypres-alan-reskin#readme",
   "dependencies": {
     "cypress": "^7.5.0"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3"
   }
 }
