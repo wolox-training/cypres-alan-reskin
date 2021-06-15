@@ -10,7 +10,7 @@ describe('Signup tests', () => {
     cy.get(':nth-child(3) > .nav-link').click();
   });
 
-  it.skip('Should sign in succesfully', () => {
+  it('Should sign in succesfully', () => {
     const id = Math.floor(Math.random() * 10000);
     const username = `username${id}`;
     signUp.addUsername(username); // internet.userName genera un usuario con fomato xxx.yyy y conduit no acepta ese formato
