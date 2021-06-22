@@ -1,1 +1,4 @@
-{ "defaultCommandTimeout": 8000 }
+{
+  "baseUrl": "https://qa-react-conduit.herokuapp.com",
+  "defaultCommandTimeout": 8000
+}
