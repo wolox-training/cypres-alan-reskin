@@ -1,8 +1,10 @@
 /// <reference types="cypress" />
 
-import * as signIn from '../page-objects/Signin';
+import { SignIn } from '../page-objects/Signin';
 
 describe('SignIn tests', () => {
+  const signIn = new SignIn();
+
   beforeEach(() => {
     cy.visit('/');
     signIn.enterSignInPage();

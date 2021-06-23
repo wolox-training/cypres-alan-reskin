@@ -1,10 +1,12 @@
 /// <reference types="cypress" />
 
-import * as signUp from '../page-objects/Signup';
+import { SignUp } from '../page-objects/Signup';
 
 const { internet } = require('faker');
 
 describe('Signup tests', () => {
+  const signUp = new SignUp();
+
   beforeEach(() => {
     cy.visit('/');
     signUp.signUpPage();
@@ -13,7 +15,9 @@ describe('Signup tests', () => {
   it('Should sign up succesfully', () => {
     const id = Math.floor(Math.random() * 10000);
     const username = `username${id}`;
-    signUp.addUsername(username); // internet.userName genera un usuario con fomato xxx.yyy y conduit no acepta ese formato
+    /* internet.userName generates an user with the format xxx.yyy and conduit
+    doesn't allow that format*/
+    signUp.addUsername(username);
     signUp.addEmail(internet.exampleEmail());
     signUp.addPassword(internet.password());
     signUp.clickSignUpButton();
@@ -22,12 +26,14 @@ describe('Signup tests', () => {
 
   it('Sign in an existent user', () => {
     // The user used in this scenario is already created
-    signUp.addUsername(Cypress.env('USER_NAME')); // internet.userName genera un usuario con fomato xxx.yyy y conduit no acepta ese formato
+    /* internet.userName generates an user with the format xxx.yyy and conduit
+    doesn't allow that format*/
+    signUp.addUsername(Cypress.env('USER_NAME'));
     signUp.addEmail(Cypress.env('USER_EMAIL'));
     signUp.addPassword(internet.password());
     signUp.clickSignUpButton();
-    signUp.getErrorMessage(1, 'email has already been taken');
-    signUp.getErrorMessage(2, 'username has already been taken');
+    signUp.emailErrorMessage(1);
+    signUp.usernameErrorMessage(2);
   });
 
   it('Should show error when click on sign in with all empty fields', () => {
@@ -40,7 +46,7 @@ describe('Signup tests', () => {
     signUp.addPassword(internet.password());
     signUp.addEmail('emailsinarroba.com');
     signUp.clickSignUpButton();
-    signUp.getUrlAndCompare(Cypress.env('REGISTER_URL'));
+    signUp.getSignUpUrlAndCompare();
   });
 
   it('Should show password is too short error', () => {
