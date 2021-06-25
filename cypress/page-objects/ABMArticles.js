@@ -2,6 +2,11 @@
 
 export class ABMArticles {
   newPost(articleTitle, articleAbout, articleDesc, tags) {
+    cy.intercept({
+      method: 'POST',
+      url: '/api/articles',
+    }).as('createArticle');
+
     cy.get('.container > .nav > :nth-child(2) > .nav-link').click();
     cy.get(':nth-child(1) > .form-control').type(articleTitle);
     cy.get(':nth-child(2) > .form-control').type(articleAbout);
@@ -11,6 +16,11 @@ export class ABMArticles {
     cy.wait('@createArticle');
   }
   editPost() {
+    cy.intercept({
+      method: 'PUT',
+      url: '/api/articles/*',
+    }).as('editArticle');
+
     cy.get(':nth-child(1) > .preview-link > h1').click();
     cy.get('.btn-outline-secondary').click();
     cy.wait(2000);
@@ -36,18 +46,18 @@ export class ABMArticles {
     cy.get('.feed-toggle > .nav > :nth-child(2) > .nav-link').click();
     cy.get('.col-md-9').should('contain', articleTitle);
   }
-  interceptCreateArticle() {
-    cy.intercept({
-      method: 'POST',
-      url: '/api/articles',
-    }).as('createArticle');
-  }
-  interceptEditArticle() {
-    cy.intercept({
-      method: 'PUT',
-      url: '/api/articles/*',
-    }).as('editArticle');
-  }
+  // interceptCreateArticle() {
+  //   cy.intercept({
+  //     method: 'POST',
+  //     url: '/api/articles',
+  //   }).as('createArticle');
+  // }
+  // interceptEditArticle() {
+  //   cy.intercept({
+  //     method: 'PUT',
+  //     url: '/api/articles/*',
+  //   }).as('editArticle');
+  // }
   interceptGetArticles() {
     cy.intercept({
       method: 'GET',
