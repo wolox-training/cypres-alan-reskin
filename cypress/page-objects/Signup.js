@@ -28,8 +28,25 @@ export class SignUp {
       'username has already been taken'
     );
   }
-  errorMessageLenghtExpected(lenght) {
-    cy.get('.error-messages li').should('have.length', lenght);
+  passwordErrorMessage() {
+    cy.get('.error-messages li').should(
+      'have.text',
+      'password is too short (minimum is 6 characters)'
+    );
+  }
+  blankFieldsError() {
+    cy.get('.error-messages > :nth-child(1)').should(
+      'have.text',
+      "email can't be blank"
+    );
+    cy.get('.error-messages > :nth-child(2)').should(
+      'have.text',
+      "password can't be blank"
+    );
+    cy.get('.error-messages > :nth-child(3)').should(
+      'have.text',
+      "username is invalidcan't be blank"
+    );
   }
   getLoggedUsername(username) {
     cy.get(':nth-child(4) > .nav-link').should('have.text', username);

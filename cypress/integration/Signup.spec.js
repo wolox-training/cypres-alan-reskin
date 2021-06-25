@@ -38,7 +38,8 @@ describe('Signup tests', () => {
 
   it('Should show error when click on sign in with all empty fields', () => {
     signUp.clickSignUpButton();
-    signUp.errorMessageLenghtExpected(3);
+    // signUp.errorMessageLenghtExpected(3);
+    signUp.blankFieldsError();
   });
 
   it('Should show email format error', () => {
@@ -54,6 +55,6 @@ describe('Signup tests', () => {
     signUp.addPassword('123');
     signUp.addEmail(internet.exampleEmail());
     signUp.clickSignUpButton();
-    signUp.errorMessageLenghtExpected(1);
+    signUp.passwordErrorMessage();
   });
 });
