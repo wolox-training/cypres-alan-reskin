@@ -14,10 +14,6 @@ export class SignIn {
   enterSignInPage() {
     cy.get(':nth-child(2) > .nav-link').click();
   }
-
-  errorMessageLenghtExpected(lenght) {
-    cy.get('.error-messages li').should('have.length', lenght);
-  }
   invalidEmailOrPassword() {
     cy.get('.error-messages > li').should(
       'have.text',
