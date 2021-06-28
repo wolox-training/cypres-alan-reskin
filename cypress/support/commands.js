@@ -30,3 +30,15 @@ Cypress.Commands.add('loginAutomationUser', () => {
   cy.get(':nth-child(2) > .form-control').type(Cypress.env('USER_PASSWORD'));
   cy.get('.btn').click();
 });
+
+Cypress.Commands.add('loginCustomUser', (user, password) => {
+  cy.get(':nth-child(2) > .nav-link').click();
+  cy.get(':nth-child(1) > .form-control').type(user);
+  cy.get(':nth-child(2) > .form-control').type(password);
+  cy.get('.btn').click();
+});
+
+Cypress.Commands.add('logOut', () => {
+  cy.get(':nth-child(3) > .nav-link').click();
+  cy.get('.btn-outline-danger').click();
+});

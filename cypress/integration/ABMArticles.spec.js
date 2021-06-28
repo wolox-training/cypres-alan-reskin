@@ -5,9 +5,7 @@ import { ABMArticles } from '../page-objects/ABMArticles.js';
 describe('ABM of Articles tests', () => {
   const Articles = new ABMArticles();
   before(() => {
-    Articles.interceptCreateArticle();
     Articles.interceptGetArticles();
-    Articles.interceptEditArticle();
     cy.visit('/');
     cy.loginAutomationUser();
     cy.wait('@getArticles');
