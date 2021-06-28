@@ -46,18 +46,7 @@ export class ABMArticles {
     cy.get('.feed-toggle > .nav > :nth-child(2) > .nav-link').click();
     cy.get('.col-md-9').should('contain', articleTitle);
   }
-  // interceptCreateArticle() {
-  //   cy.intercept({
-  //     method: 'POST',
-  //     url: '/api/articles',
-  //   }).as('createArticle');
-  // }
-  // interceptEditArticle() {
-  //   cy.intercept({
-  //     method: 'PUT',
-  //     url: '/api/articles/*',
-  //   }).as('editArticle');
-  // }
+
   interceptGetArticles() {
     cy.intercept({
       method: 'GET',
