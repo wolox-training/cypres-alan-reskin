@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
 
 import { ABMArticles } from '../page-objects/ABMArticles';
+import { Logout } from '../page-objects/Logout';
 
 describe('Logout test', () => {
   const articles = new ABMArticles();
-
+  const logout = new Logout();
   before(() => {
     cy.visit('/');
     cy.loginAutomationUser();
@@ -14,9 +15,6 @@ describe('Logout test', () => {
 
   it('should log out', () => {
     cy.logOut();
-    cy.get('.container > .nav').should(
-      'not.have.text',
-      Cypress.env('USER_NAME')
-    );
+    logout.checkLogout(Cypress.env('USER_NAME'));
   });
 });
