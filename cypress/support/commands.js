@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('loginAutomationUser', () => {
+  cy.get(':nth-child(2) > .nav-link').click();
+  cy.get(':nth-child(1) > .form-control').type(Cypress.env('USER_EMAIL'));
+  cy.get(':nth-child(2) > .form-control').type(Cypress.env('USER_PASSWORD'));
+  cy.get('.btn').click();
+});
