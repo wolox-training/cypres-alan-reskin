@@ -38,4 +38,19 @@ export class SignUp {
   getSignUpUrlAndCompare() {
     cy.url().should('eq', Cypress.env('REGISTER_URL'));
   }
+
+  apiCreateUser(username, email, password) {
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('HOME_URL') + '/api/users', // baseUrl is prepended to url
+      form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
+      body: {
+        user: {
+          username,
+          email,
+          password,
+        },
+      },
+    }).then((response) => expect(response.status).to.eq(200));
+  }
 }

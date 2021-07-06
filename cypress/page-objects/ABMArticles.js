@@ -53,4 +53,21 @@ export class ABMArticles {
       url: '/api/articles/*',
     }).as('getArticles');
   }
+
+  apiCreateArticle(token, title, desc, body) {
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('HOME_URL') + '/api/articles', // baseUrl is prepended to url
+      form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
+      body: {
+        article: {
+          title,
+          description: desc,
+          body: body,
+          tagList: [],
+        },
+      },
+      headers: { authorization: 'Token ' + token },
+    }).then((response) => expect(response.status).to.eq(200));
+  }
 }
