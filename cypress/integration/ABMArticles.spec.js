@@ -3,9 +3,9 @@
 import { ABMArticles } from '../page-objects/ABMArticles.js';
 
 describe('ABM of Articles tests', () => {
-  const Articles = new ABMArticles();
+  const articles = new ABMArticles();
   before(() => {
-    Articles.interceptGetArticles();
+    articles.interceptGetArticles();
     cy.visit('/');
     cy.loginAutomationUser();
     cy.wait('@getArticles');
@@ -16,8 +16,8 @@ describe('ABM of Articles tests', () => {
     const articleAbout = 'texto sobre que es el articulo';
     const articleDesc = 'Descripcion del articulo';
     const tags = 'Tags del articulo';
-    Articles.newPost(articleTitle, articleAbout, articleDesc, tags);
-    Articles.checkLastPostCreated(articleTitle);
+    articles.newPost(articleTitle, articleAbout, articleDesc, tags);
+    articles.checkLastPostCreated(articleTitle);
   });
 
   it('Edit an Article', () => {
@@ -25,9 +25,9 @@ describe('ABM of Articles tests', () => {
     const articleAbout = 'texto para ser editado';
     const articleDesc = 'Descripcion para ser editada';
     const tags = 'Tags del articulo a editar';
-    Articles.newPost(articleTitle, articleAbout, articleDesc, tags);
-    Articles.checkLastPostCreated(articleTitle);
-    Articles.editPost();
-    Articles.checkPostEdited('editado');
+    articles.newPost(articleTitle, articleAbout, articleDesc, tags);
+    articles.checkLastPostCreated(articleTitle);
+    articles.editPost();
+    articles.checkPostEdited('editado');
   });
 });

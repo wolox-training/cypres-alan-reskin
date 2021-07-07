@@ -70,4 +70,12 @@ export class ABMArticles {
       headers: { authorization: 'Token ' + token },
     }).then((response) => expect(response.status).to.eq(200));
   }
+
+  globalFeedPage() {
+    cy.get('.feed-toggle > .nav > :nth-child(2) > .nav-link').click();
+  }
+
+  checkArticle(articleTitle) {
+    cy.get('h1').should('have.text', articleTitle);
+  }
 }

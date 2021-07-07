@@ -60,4 +60,21 @@ export class Favorites {
       }
     );
   }
+
+  checkNoFavorites() {
+    cy.get('.article-preview').should(
+      'have.text',
+      'No articles are here... yet.'
+    );
+  }
+
+  goToOthersFavoritesArticles() {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      return false;
+    });
+
+    cy.intercept('GET', '/api/articles*').as('favoritedArticles');
+    cy.get('.articles-toggle > .nav > :nth-child(2) > .nav-link').click();
+    cy.wait('@favoritedArticles');
+  }
 }

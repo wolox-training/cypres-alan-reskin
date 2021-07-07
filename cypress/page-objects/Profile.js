@@ -48,4 +48,8 @@ export class Profile {
       'password is too short (minimum is 6 characters)'
     );
   }
+
+  getProfileFromFeed(username) {
+    cy.get('.col-md-9').contains(username).click();
+  }
 }
