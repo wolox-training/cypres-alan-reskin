@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://qa-react-conduit.herokuapp.com/",
+  "baseUrl": "https://localhost:8080",
   "defaultCommandTimeout": 8000,
   "watchForFileChanges": false
 }
