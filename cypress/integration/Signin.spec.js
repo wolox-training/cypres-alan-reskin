@@ -12,7 +12,6 @@ describe('SignIn tests', () => {
 
   it('Signin with empty fields', () => {
     signIn.clickSignInButton();
-    signIn.errorMessageLenghtExpected(1);
     signIn.invalidEmailOrPassword();
   });
 

@@ -28,25 +28,8 @@ export class SignUp {
       'username has already been taken'
     );
   }
-  passwordErrorMessage() {
-    cy.get('.error-messages li').should(
-      'have.text',
-      'password is too short (minimum is 6 characters)'
-    );
-  }
-  blankFieldsError() {
-    cy.get('.error-messages > :nth-child(1)').should(
-      'have.text',
-      "email can't be blank"
-    );
-    cy.get('.error-messages > :nth-child(2)').should(
-      'have.text',
-      "password can't be blank"
-    );
-    cy.get('.error-messages > :nth-child(3)').should(
-      'have.text',
-      "username is invalidcan't be blank"
-    );
+  errorMessageLenghtExpected(lenght) {
+    cy.get('.error-messages li').should('have.length', lenght);
   }
   getLoggedUsername(username) {
     cy.get(':nth-child(4) > .nav-link').should('have.text', username);
@@ -54,5 +37,20 @@ export class SignUp {
 
   getSignUpUrlAndCompare() {
     cy.url().should('eq', Cypress.env('REGISTER_URL'));
+  }
+
+  apiCreateUser(username, email, password) {
+    cy.request({
+      method: 'POST',
+      url: Cypress.env('HOME_URL') + '/api/users', // baseUrl is prepended to url
+      form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
+      body: {
+        user: {
+          username,
+          email,
+          password,
+        },
+      },
+    }).then((response) => expect(response.status).to.eq(200));
   }
 }

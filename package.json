@@ -19,9 +19,10 @@
   },
   "homepage": "https://github.com/wolox-training/cypres-alan-reskin#readme",
   "dependencies": {
-    "cypress": "^7.5.0"
+    "cypress": "^8.0.0"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "faker": "^5.5.3"
   }
 }
