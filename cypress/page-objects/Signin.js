@@ -20,4 +20,7 @@ export class SignIn {
       'email or password is invalid'
     );
   }
+  usernameInNavbarShouldBe(name) {
+    cy.get(':nth-child(4) > .nav-link').should('have.text', name);
+  }
 }

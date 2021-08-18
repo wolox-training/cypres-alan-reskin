@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { SignIn } from '../page-objects/Signin';
+
+Cypress.Commands.add('loginUser', (email, password) => {
+  const signIn = new SignIn();
+
+  signIn.addEmail(email);
+  signIn.addPassword(password);
+  signIn.clickSignInButton();
+});
+
+Cypress.Commands.add('logOut', () => {
+  cy.get(':nth-child(3) > .nav-link').click();
+  cy.get('.btn-outline-danger').click();
+});
