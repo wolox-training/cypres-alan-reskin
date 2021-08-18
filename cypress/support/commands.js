@@ -24,18 +24,14 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('loginAutomationUser', () => {
-  cy.get(':nth-child(2) > .nav-link').click();
-  cy.get(':nth-child(1) > .form-control').type(Cypress.env('USER_EMAIL'));
-  cy.get(':nth-child(2) > .form-control').type(Cypress.env('USER_PASSWORD'));
-  cy.get('.btn').click();
-});
+import { SignIn } from '../page-objects/Signin';
 
-Cypress.Commands.add('loginCustomUser', (user, password) => {
-  cy.get(':nth-child(2) > .nav-link').click();
-  cy.get(':nth-child(1) > .form-control').type(user);
-  cy.get(':nth-child(2) > .form-control').type(password);
-  cy.get('.btn').click();
+Cypress.Commands.add('loginUser', (email, password) => {
+  const signIn = new SignIn();
+
+  signIn.addEmail(email);
+  signIn.addPassword(password);
+  signIn.clickSignInButton();
 });
 
 Cypress.Commands.add('logOut', () => {
